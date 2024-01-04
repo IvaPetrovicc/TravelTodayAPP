@@ -1,41 +1,21 @@
 {
   "project_info": {
-    "project_number": "",
-    "firebase_url": "",
-    "project_id": "",
-    "storage_bucket": ""
+    "project_number": "264933508074",
+    "project_id": "traveltodayapp-fffaf",
+    "storage_bucket": "traveltodayapp-fffaf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "",
+        "mobilesdk_app_id": "1:264933508074:android:2c3d0500f5b8abaa02e893",
         "android_client_info": {
-          "package_name": ""
+          "package_name": "ba.sum.fpmoz.traveltoday"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": ""
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "",
-        "android_client_info": {
-          "package_name": ""
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": ""
+          "current_key": "AIzaSyAbkloXB9CwByDXuoSg2ubfVuVHgqpx5sU"
         }
       ],
       "services": {

@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "257228546166",
+    "firebase_url": "https://traveltoday-aad12-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "traveltoday-aad12",
+    "storage_bucket": "traveltoday-aad12.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257228546166:android:97774086a16e3e95a7bf57",
+        "android_client_info": {
+          "package_name": "ba.sum.fpmoz.travelapp_pamu"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_EJhPzHTMIHMyyU6d_LD8rN5V9SBZCSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:257228546166:android:8fafdbbe00238c00a7bf57",
+        "android_client_info": {
+          "package_name": "ba.sum.fpmoz.traveltoday"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_EJhPzHTMIHMyyU6d_LD8rN5V9SBZCSY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

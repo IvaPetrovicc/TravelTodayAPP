@@ -1,11 +1,11 @@
-package ba.sum.fpmoz.traveltoday;
+package ba.sum.fpmoz.traveltoday.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
+import ba.sum.fpmoz.traveltoday.R;
 
 public class FirstActivity extends AppCompatActivity {
 
@@ -34,5 +34,4 @@ public class FirstActivity extends AppCompatActivity {
         }
         backPressed = System.currentTimeMillis();
     }
-
 }

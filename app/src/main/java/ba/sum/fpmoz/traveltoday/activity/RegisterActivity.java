@@ -1,4 +1,4 @@
-package ba.sum.fpmoz.traveltoday;
+package ba.sum.fpmoz.traveltoday.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,14 +7,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import ba.sum.fpmoz.traveltoday.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -52,15 +51,19 @@ public class RegisterActivity extends AppCompatActivity {
                 String confPass = editTextConfirmPassword.getText().toString().trim();
                 if (name.isEmpty()) {
                     editTextFirstName.setError("First name can't be empty");
+                    return;
                 }
                 if (user.isEmpty()) {
                     editTextEmail.setError("Email can't be empty");
+                    return;
                 }
                 if (pass.isEmpty()) {
                     editTextPassword.setError("Password can't be empty");
+                    return;
                 }
                 if (confPass.isEmpty()) {
                     editTextConfirmPassword.setError("Confirm password can't be empty");
+                    return;
                 }
                 if (!pass.equals(confPass)) {
 
@@ -72,7 +75,9 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                                startActivity(new Intent(RegisterActivity.this, BottomBarActivity.class));
+                                finish();
+
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Registration failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }

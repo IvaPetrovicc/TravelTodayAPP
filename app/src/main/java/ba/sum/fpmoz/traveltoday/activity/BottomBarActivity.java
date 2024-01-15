@@ -1,15 +1,14 @@
-package ba.sum.fpmoz.traveltoday;
+package ba.sum.fpmoz.traveltoday.activity;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
+import ba.sum.fpmoz.traveltoday.R;
 
-public class HomeActivity extends AppCompatActivity {
+public class BottomBarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_bottom_bar);
     }
-
 }

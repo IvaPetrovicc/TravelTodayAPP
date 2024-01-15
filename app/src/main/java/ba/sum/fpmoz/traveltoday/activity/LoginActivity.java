@@ -1,4 +1,4 @@
-package ba.sum.fpmoz.traveltoday;
+package ba.sum.fpmoz.traveltoday.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,14 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import ba.sum.fpmoz.traveltoday.R;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -50,8 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
                                         Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                                        finish();
+                                        startActivity(new Intent(LoginActivity.this, BottomBarActivity.class));
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override

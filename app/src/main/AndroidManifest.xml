@@ -14,7 +14,7 @@
         android:theme="@style/Theme.TravelToday"
         tools:targetApi="31">
         <activity
-            android:name=".FirstActivity"
+            android:name=".activity.FirstActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".ForgotPasswordActivity"></activity>
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.ForgotPasswordActivity" />
+        <activity android:name=".activity.BottomBarActivity"/>
 
 
     </application>

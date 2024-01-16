@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import ba.sum.fpmoz.traveltoday.R;
 
 public class FirstActivity extends AppCompatActivity {
@@ -13,10 +15,28 @@ public class FirstActivity extends AppCompatActivity {
     private static final int TIME_INTERVAL = 2000;
     private long backPressed;
 
+    private FirebaseAuth auth;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateUI(auth.getCurrentUser());
+    }
+
+    private void updateUI(FirebaseUser currentUser) {
+        if (currentUser != null) {
+            startActivity(new Intent(this, BottomBarActivity.class));
+            finish();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
+
+        auth = FirebaseAuth.getInstance();
+
         buttonStart = findViewById(R.id.buttonStart);
         buttonStart.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

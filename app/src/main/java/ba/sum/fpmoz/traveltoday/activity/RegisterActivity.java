@@ -13,6 +13,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import ba.sum.fpmoz.traveltoday.R;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -21,7 +24,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextFirstName, editTextEmail, editTextPassword, editTextConfirmPassword;
     private Button buttonSignIn;
     private FirebaseAuth auth;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,6 @@ public class RegisterActivity extends AppCompatActivity {
         editTextConfirmPassword = findViewById(R.id.editTextConfirmPassword);
         buttonSignIn = findViewById(R.id.buttonSignIn);
         auth = FirebaseAuth.getInstance();
-
 
         textViewLogin.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -66,18 +67,21 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
                 if (!pass.equals(confPass)) {
-
                     Toast.makeText(RegisterActivity.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
-
                 } else {
                     auth.createUserWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                FirebaseUser firebaseUser = auth.getCurrentUser();
+                                String userId = firebaseUser.getUid();
+
+                                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("korisnici").child(userId);
+                                databaseReference.child("ime").setValue(name);
+
                                 Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(RegisterActivity.this, BottomBarActivity.class));
                                 finish();
-
                             } else {
                                 Toast.makeText(RegisterActivity.this, "Registration failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }

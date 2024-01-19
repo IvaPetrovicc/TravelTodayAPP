@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -20,17 +21,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import ba.sum.fpmoz.traveltoday.R;
 import ba.sum.fpmoz.traveltoday.activity.LoginActivity;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
     private View rootView;
     private TextView textViewFirstName;
 
+    private CircleImageView circleImageView;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_profile, container, false);
         textViewFirstName = rootView.findViewById(R.id.textViewFirstName);
-
+        circleImageView = rootView.findViewById(R.id.circleImageView);
         Button buttonLogout = rootView.findViewById(R.id.buttonLogout);
+
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +74,16 @@ public class ProfileFragment extends Fragment {
                         if (dataSnapshot.hasChild("ime")) {
                             String ime = dataSnapshot.child("ime").getValue().toString();
                             textViewFirstName.setText(ime);
+                        }
+
+                        if (dataSnapshot.hasChild("profileImage")) {
+                            String profileImageUrl = dataSnapshot.child("profileImage").getValue().toString();
+
+                            Glide.with(getContext())
+                                    .load(profileImageUrl)
+                                    .placeholder(R.drawable.ic_person)
+                                    .error(R.drawable.ic_person)
+                                    .into(circleImageView);
                         }
                     }
                 }

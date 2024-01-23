@@ -3,45 +3,43 @@ package ba.sum.fpmoz.traveltoday.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import ba.sum.fpmoz.traveltoday.R;
+import ba.sum.fpmoz.traveltoday.activity.TravelDetailsActivity;
 import ba.sum.fpmoz.traveltoday.models.Destination;
 
 public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.MyViewHolder> {
 
-    FirebaseDatabase mDatabase = FirebaseDatabase.getInstance("https://traveltodayapp-fffaf-default-rtdb.europe-west1.firebasedatabase.app/");
     private final Context context;
     private final ArrayList<Destination> list;
-    private final OnItemClickListener listener;
+    private final OnDestinationClickListener listener;
     private final String userType;
 
-
-    public interface OnItemClickListener {
-        void onItemClick(Destination destination);
+    public interface OnDestinationClickListener {
+        void onDestinationClick(Destination destination);
     }
 
-    public DestinationAdapter(Context context, ArrayList<Destination> list, OnItemClickListener listener, String userType) {
+    public DestinationAdapter(Context context, ArrayList<Destination> list, OnDestinationClickListener listener, String userType) {
         this.context = context;
         this.list = list;
         this.listener = listener;
         this.userType = userType;
-
     }
 
     @NonNull
@@ -63,12 +61,12 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
                     .into(holder.destinationImage);
         }
 
-        if ("admin".equals(userType)) {
-            holder.editBtn.setVisibility(View.VISIBLE);
-            holder.deleteBtn.setVisibility(View.VISIBLE);
-        } else {
+        if ("user".equals(userType)) {
             holder.editBtn.setVisibility(View.GONE);
             holder.deleteBtn.setVisibility(View.GONE);
+        } else {
+            holder.editBtn.setVisibility(View.VISIBLE);
+            holder.deleteBtn.setVisibility(View.VISIBLE);
         }
     }
 
@@ -79,44 +77,47 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        FirebaseAuth auth;
-        FirebaseUser user;
         TextView destination;
         Button editBtn;
         Button deleteBtn;
         ImageView destinationImage;
 
-        DatabaseReference destinationReference = mDatabase.getReference("destination");
-
+        FirebaseAuth auth;
+        FirebaseUser user;
+        DatabaseReference destinationReference;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
             destination = itemView.findViewById(R.id.textName);
             destinationImage = itemView.findViewById(R.id.destinationImage);
             editBtn = itemView.findViewById(R.id.btnEditDestination);
             deleteBtn = itemView.findViewById(R.id.btnDeleteDestination);
             auth = FirebaseAuth.getInstance();
             user = auth.getCurrentUser();
+            destinationReference = FirebaseDatabase.getInstance("https://traveltodayapp-fffaf-default-rtdb.europe-west1.firebasedatabase.app/")
+                    .getReference("destination");
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION && listener != null) {
-                        listener.onItemClick(list.get(position));
+                        listener.onDestinationClick(list.get(position));
+
+                        // Start TravelDetailsActivity with selected destination details
+                        Intent intent = new Intent(context, TravelDetailsActivity.class);
+                        intent.putExtra("selected_destination", list.get(position));
+                        context.startActivity(intent);
                     }
                 }
             });
 
-
             editBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-
                 }
             });
-
 
             deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -134,22 +135,22 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
 
                                         if (context != null) {
 
-                                            destinationReference.child(user.getUid()).child(destination.getName().toString()).removeValue()
+                                            destinationReference.child(user.getUid()).child(destination.getName()).removeValue()
                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
                                                         public void onSuccess(Void aVoid) {
-                                                            Toast.makeText(context, "Destination deleted successfully", Toast.LENGTH_SHORT).show();
+
+                                                            list.remove(position);
+                                                            notifyItemRemoved(position);
+                                                            notifyItemRangeChanged(position, list.size());
                                                         }
                                                     })
                                                     .addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(context, "Failed to delete destination", Toast.LENGTH_SHORT).show();
+
                                                         }
                                                     });
-
-
-
                                         }
                                         dialogInterface.dismiss();
                                     }

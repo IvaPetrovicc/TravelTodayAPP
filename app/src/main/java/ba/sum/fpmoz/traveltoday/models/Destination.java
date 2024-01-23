@@ -1,6 +1,9 @@
 package ba.sum.fpmoz.traveltoday.models;
 
-public class Destination {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Destination implements Parcelable {
 
     public String name;
     public String about;
@@ -37,5 +40,35 @@ public class Destination {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    protected Destination(Parcel in) {
+        name = in.readString();
+        about = in.readString();
+        image = in.readString();
+    }
+
+    public static final Creator<Destination> CREATOR = new Creator<Destination>() {
+        @Override
+        public Destination createFromParcel(Parcel in) {
+            return new Destination(in);
+        }
+
+        @Override
+        public Destination[] newArray(int size) {
+            return new Destination[size];
+        }
+    };
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(about);
+        dest.writeString(image);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 }

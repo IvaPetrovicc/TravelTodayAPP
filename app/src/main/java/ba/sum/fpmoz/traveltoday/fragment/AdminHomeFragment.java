@@ -19,7 +19,7 @@ import ba.sum.fpmoz.traveltoday.R;
 import ba.sum.fpmoz.traveltoday.adapter.DestinationAdapter;
 import ba.sum.fpmoz.traveltoday.models.Destination;
 
-public class AdminHomeFragment extends Fragment implements DestinationAdapter.OnItemClickListener {
+public class AdminHomeFragment extends Fragment implements DestinationAdapter.OnDestinationClickListener {
 
     private RecyclerView destinationView;
     private ArrayList<Destination> list;
@@ -65,7 +65,7 @@ public class AdminHomeFragment extends Fragment implements DestinationAdapter.On
     }
 
     @Override
-    public void onItemClick(Destination destination) {
+    public void onDestinationClick(Destination destination) {
         Log.d("ItemClicked", "Subject: " + destination.getName());
     }
 }

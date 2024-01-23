@@ -46,7 +46,6 @@ public class EditDestinationActivity extends AppCompatActivity {
         String destinationName = intent.getStringExtra("destinationName");
 
         if (destinationName == null) {
-            // Handle error or notify user about missing destinationName
             finish();
         }
 
@@ -64,14 +63,12 @@ public class EditDestinationActivity extends AppCompatActivity {
                                 }
                             }
                         } else {
-                            // Handle error or notify user that destination with the provided name does not exist
                             finish();
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        // Handle error
                         finish();
                     }
                 });
@@ -86,7 +83,6 @@ public class EditDestinationActivity extends AppCompatActivity {
         tvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle back navigation to the previous fragment or activity
                 onBackPressed();
             }
         });
@@ -94,7 +90,6 @@ public class EditDestinationActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle back navigation to the previous fragment or activity
                 onBackPressed();
             }
         });
@@ -119,14 +114,12 @@ public class EditDestinationActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Destination updated successfully!", Toast.LENGTH_LONG).show();
                             finish();
                         } else {
-                            // Handle error or notify user that destination with the provided name does not exist
                             finish();
                         }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        // Handle error
                         finish();
                     }
                 });

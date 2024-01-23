@@ -1,13 +1,10 @@
 package ba.sum.fpmoz.traveltoday.activity;
 
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import ba.sum.fpmoz.traveltoday.R;
 import ba.sum.fpmoz.traveltoday.fragment.AddDestinationFragment;
 import ba.sum.fpmoz.traveltoday.fragment.AdminHomeFragment;
@@ -20,10 +17,8 @@ public class AdminBottomBarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_bottom_bar);
 
-        // Load the initial fragment
         loadFragment(new AdminHomeFragment());
 
-        // Set up bottom navigation listener
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             Fragment selectedFragment;

@@ -29,10 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.IOException;
 import java.util.UUID;
-
 import ba.sum.fpmoz.traveltoday.R;
 import ba.sum.fpmoz.traveltoday.activity.AdminBottomBarActivity;
 import ba.sum.fpmoz.traveltoday.models.Destination;
@@ -159,7 +157,6 @@ public class AddDestinationFragment extends Fragment {
         String about = editTextDescription.getText().toString();
         Destination destination = new Destination(name, about, destinationImage);
 
-        // Spremanje u Firebase bazu podataka
         DatabaseReference destinationReference = mDatabase.getReference("destination");
         destinationReference.child(user.getUid()).child(name).setValue(destination);
 

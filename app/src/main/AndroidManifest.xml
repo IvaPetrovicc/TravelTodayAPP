@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +17,15 @@
         android:theme="@style/Theme.TravelToday"
         tools:targetApi="31">
 
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDx9DlQcT8uU7gZZU9Tq02mzoivTP27eDs" />
+
+        <activity
+            android:name=".activity.MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
         <activity
             android:name=".activity.EditDestinationActivity"
             android:exported="false" />
@@ -37,7 +49,6 @@
         <activity android:name=".activity.ForgotPasswordActivity" />
         <activity android:name=".activity.BottomBarActivity" />
         <activity android:name=".activity.TravelDetailsActivity" />
-
     </application>
 
 </manifest>

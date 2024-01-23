@@ -1,5 +1,6 @@
 package ba.sum.fpmoz.traveltoday.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +18,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import ba.sum.fpmoz.traveltoday.R;
+import ba.sum.fpmoz.traveltoday.activity.TravelDetailsActivity;
 import ba.sum.fpmoz.traveltoday.adapter.DestinationAdapter;
 import ba.sum.fpmoz.traveltoday.models.Destination;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements DestinationAdapter.OnDestinationClickListener {
 
     private RecyclerView recyclerViewDestination;
     private ArrayList<Destination> destinationList;
@@ -35,9 +37,10 @@ public class HomeFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance("https://traveltodayapp-fffaf-default-rtdb.europe-west1.firebasedatabase.app/");
 
+
         recyclerViewDestination = view.findViewById(R.id.recyclerViewDestination);
         destinationList = new ArrayList<>();
-        adapter = new DestinationAdapter(getContext(), destinationList, null, "user");
+        adapter = new DestinationAdapter(getContext(), destinationList, this, "user");
         recyclerViewDestination.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewDestination.setAdapter(adapter);
 
@@ -78,5 +81,13 @@ public class HomeFragment extends Fragment {
                 }
             });
         }
+    }
+
+    @Override
+    public void onDestinationClick(Destination destination) {
+        Intent intent = new Intent(getContext(), TravelDetailsActivity.class);
+        intent.putExtra("destination_name", destination.getName());
+        intent.putExtra("destination_image", destination.getImage());
+        startActivity(intent);
     }
 }

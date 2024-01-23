@@ -91,9 +91,8 @@ public class RegisterActivity extends AppCompatActivity {
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             String userId = firebaseUser.getUid();
 
-                            // Dodajte polje userType u korisnički profil
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName("userType:user") // Ovo može biti "admin" ili "user" prema vašim potrebama
+                                    .setDisplayName("userType:user")
                                     .build();
 
                             firebaseUser.updateProfile(profileUpdates)
@@ -101,7 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
-                                                // Ako je uspješno ažurirano userType, nastavite s registracijom korisnika
+
                                                 if (selectedImageUri != null) {
                                                     uploadImageAndSaveURL(userId, name);
                                                 }

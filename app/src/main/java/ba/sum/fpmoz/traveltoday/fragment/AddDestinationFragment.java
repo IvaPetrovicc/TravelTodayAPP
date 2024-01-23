@@ -15,12 +15,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -56,6 +54,8 @@ public class AddDestinationFragment extends Fragment {
     private Uri filePath;
     private String destinationImage;
 
+    private static final int PICK_IMAGE_REQUEST = 1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -88,12 +88,7 @@ public class AddDestinationFragment extends Fragment {
         destinationSaveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = editTextDestinationName.getText().toString();
-                String about = editTextDescription.getText().toString();
-                Destination m = new Destination(name, about, destinationImage);
-                destinationReference.child(user.getUid()).child(name).setValue(m);
-                Intent i = new Intent(requireContext(), AdminBottomBarActivity.class);
-                startActivity(i);
+                saveDestination();
             }
         });
 
@@ -113,7 +108,7 @@ public class AddDestinationFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 22 &&
+        if (requestCode == PICK_IMAGE_REQUEST &&
                 resultCode == getActivity().RESULT_OK &&
                 data != null &&
                 data.getData() != null) {
@@ -121,6 +116,9 @@ public class AddDestinationFragment extends Fragment {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireContext().getContentResolver(), filePath);
                 imagePreview.setImageBitmap(bitmap);
+
+                uploadImage();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -131,7 +129,7 @@ public class AddDestinationFragment extends Fragment {
         Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(i, "Pick an image "), 22);
+        startActivityForResult(Intent.createChooser(i, "Pick an image "), PICK_IMAGE_REQUEST);
     }
 
     private void uploadImage() {
@@ -154,5 +152,18 @@ public class AddDestinationFragment extends Fragment {
                 }
             });
         }
+    }
+
+    private void saveDestination() {
+        String name = editTextDestinationName.getText().toString();
+        String about = editTextDescription.getText().toString();
+        Destination destination = new Destination(name, about, destinationImage);
+
+        // Spremanje u Firebase bazu podataka
+        DatabaseReference destinationReference = mDatabase.getReference("destination");
+        destinationReference.child(user.getUid()).child(name).setValue(destination);
+
+        Intent i = new Intent(requireContext(), AdminBottomBarActivity.class);
+        startActivity(i);
     }
 }

@@ -1,14 +1,5 @@
 package ba.sum.fpmoz.traveltoday.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import ba.sum.fpmoz.traveltoday.R;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -23,7 +14,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -34,10 +28,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.IOException;
 import java.util.UUID;
-
+import ba.sum.fpmoz.traveltoday.R;
 import ba.sum.fpmoz.traveltoday.models.Destination;
 
 public class AddDestinationActivity extends AppCompatActivity {
@@ -80,8 +73,6 @@ public class AddDestinationActivity extends AppCompatActivity {
                 selectImage();
             }
         });
-
-
 
 
         Button destinationSaveBtn = findViewById(R.id.btnSaveDestination);
@@ -138,7 +129,7 @@ public class AddDestinationActivity extends AppCompatActivity {
         }
     }
 
-    private void selectImage () {
+    private void selectImage() {
         Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
@@ -147,7 +138,7 @@ public class AddDestinationActivity extends AppCompatActivity {
         );
     }
 
-    private void uploadImage () {
+    private void uploadImage() {
         if (filePath != null) {
             ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Image loading...");
@@ -171,8 +162,6 @@ public class AddDestinationActivity extends AppCompatActivity {
                     });
                 }
             });
-
-
         }
     }
 }

@@ -1,15 +1,17 @@
 package ba.sum.fpmoz.traveltoday.activity;
 
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import ba.sum.fpmoz.traveltoday.R;
 import ba.sum.fpmoz.traveltoday.fragment.AddDestinationFragment;
 import ba.sum.fpmoz.traveltoday.fragment.AdminHomeFragment;
-import ba.sum.fpmoz.traveltoday.fragment.HomeFragment;
 import ba.sum.fpmoz.traveltoday.fragment.ProfileFragment;
-import androidx.fragment.app.FragmentTransaction;
 
 public class AdminBottomBarActivity extends AppCompatActivity {
 

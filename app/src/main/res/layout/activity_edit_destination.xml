@@ -105,7 +105,7 @@
                 android:layout_marginTop="8dp"
                 android:hint="Describe your destination"
                 android:minHeight="48dp"
-                tools:ignore="HardcodedText,VisualLintTextFieldSize"/>
+                tools:ignore="HardcodedText,VisualLintTextFieldSize" />
 
         </RelativeLayout>
 

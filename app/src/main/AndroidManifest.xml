@@ -19,8 +19,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.AdminBottomBarActivity"
-            android:exported="false"
-            android:label="TravelToday" />
+            android:exported="false" />
         <activity
             android:name=".activity.AddDestinationActivity"
             android:exported="false" />

@@ -24,7 +24,10 @@ public class FirstActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser currentUser) {
-        if (currentUser != null) {
+        if (currentUser != null && currentUser.getUid().equals("2VeAhZmXZrdJxDsd2W4cpsAo8xa2")) {
+            startActivity(new Intent(this, AdminBottomBarActivity.class));
+            finish();
+        } else if (currentUser != null) {
             startActivity(new Intent(this, BottomBarActivity.class));
             finish();
         }

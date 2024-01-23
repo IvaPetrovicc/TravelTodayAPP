@@ -9,10 +9,21 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="TravelToday"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelToday"
         tools:targetApi="31">
+
+        <activity
+            android:name=".activity.EditDestinationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AdminBottomBarActivity"
+            android:exported="false"
+            android:label="TravelToday" />
+        <activity
+            android:name=".activity.AddDestinationActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.FirstActivity"
             android:exported="true">
@@ -27,7 +38,6 @@
         <activity android:name=".activity.ForgotPasswordActivity" />
         <activity android:name=".activity.BottomBarActivity" />
         <activity android:name=".activity.TravelDetailsActivity" />
-
 
     </application>
 

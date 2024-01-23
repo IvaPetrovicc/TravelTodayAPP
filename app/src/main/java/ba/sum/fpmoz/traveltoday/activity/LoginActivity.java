@@ -48,8 +48,14 @@ public class LoginActivity extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
+                                        if ( email.equals("admin@gmail.com")) {
+                                            Intent intent = new Intent(getApplicationContext(), AdminBottomBarActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            startActivity(new Intent(LoginActivity.this, BottomBarActivity.class));
+                                        }
                                         Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(LoginActivity.this, BottomBarActivity.class));
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override

@@ -30,7 +30,6 @@ public class AdminHomeFragment extends Fragment implements DestinationAdapter.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin_home, container, false);
 
-
         destinationView = view.findViewById(R.id.destinationView);
         list = new ArrayList<>();
         mDatabase = FirebaseDatabase.getInstance("https://traveltodayapp-fffaf-default-rtdb.europe-west1.firebasedatabase.app/");
@@ -44,6 +43,8 @@ public class AdminHomeFragment extends Fragment implements DestinationAdapter.On
         destinationDbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+
                 for (DataSnapshot parentSnapshot : snapshot.getChildren()) {
                     for (DataSnapshot childSnapshot : parentSnapshot.getChildren()) {
                         Destination destination = childSnapshot.getValue(Destination.class);
@@ -56,11 +57,9 @@ public class AdminHomeFragment extends Fragment implements DestinationAdapter.On
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e("FirebaseError", "Error fetching data: " + error.getMessage());
             }
         });
-
-
 
         return view;
     }
@@ -68,5 +67,8 @@ public class AdminHomeFragment extends Fragment implements DestinationAdapter.On
     @Override
     public void onItemClick(Destination destination) {
         Log.d("ItemClicked", "Subject: " + destination.getName());
+        // Implementirajte logiku za prikaz detalja ili nešto drugo kada je stavka kliknuta
     }
+
+
 }

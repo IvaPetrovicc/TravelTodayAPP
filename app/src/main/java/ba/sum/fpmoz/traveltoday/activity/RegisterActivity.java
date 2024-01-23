@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -90,13 +91,29 @@ public class RegisterActivity extends AppCompatActivity {
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             String userId = firebaseUser.getUid();
 
-                            if (selectedImageUri != null) {
-                                uploadImageAndSaveURL(userId, name);
-                            }
+                            // Dodajte polje userType u korisnički profil
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName("userType:user") // Ovo može biti "admin" ili "user" prema vašim potrebama
+                                    .build();
 
-                            Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegisterActivity.this, BottomBarActivity.class));
-                            finish();
+                            firebaseUser.updateProfile(profileUpdates)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                // Ako je uspješno ažurirano userType, nastavite s registracijom korisnika
+                                                if (selectedImageUri != null) {
+                                                    uploadImageAndSaveURL(userId, name);
+                                                }
+
+                                                Toast.makeText(RegisterActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(RegisterActivity.this, BottomBarActivity.class));
+                                                finish();
+                                            } else {
+                                                Toast.makeText(RegisterActivity.this, "Failed to update user type: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
                         } else {
                             Toast.makeText(RegisterActivity.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -163,5 +180,4 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
 }

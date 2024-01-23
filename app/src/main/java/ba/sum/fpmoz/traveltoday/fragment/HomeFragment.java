@@ -1,18 +1,88 @@
 package ba.sum.fpmoz.traveltoday.fragment;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
 import ba.sum.fpmoz.traveltoday.R;
+import ba.sum.fpmoz.traveltoday.adapter.DestinationAdapter;
+import ba.sum.fpmoz.traveltoday.models.Destination;
 
 public class HomeFragment extends Fragment {
 
+    private RecyclerView recyclerViewDestination;
+    private ArrayList<Destination> destinationList;
+    private DestinationAdapter adapter;
+    private FirebaseDatabase mDatabase;
+    private FirebaseAuth mAuth;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance("https://traveltodayapp-fffaf-default-rtdb.europe-west1.firebasedatabase.app/");
+
+        recyclerViewDestination = view.findViewById(R.id.recyclerViewDestination);
+        destinationList = new ArrayList<>();
+        adapter = new DestinationAdapter(getContext(), destinationList, null); // null for listener since it's not needed in HomeFragment
+        recyclerViewDestination.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerViewDestination.setAdapter(adapter);
+
+        loadDestinations();
+
         return view;
+    }
+
+    private void loadDestinations() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userType = currentUser.getDisplayName();
+            DatabaseReference destinationDbRef = mDatabase.getReference("destination");
+
+            destinationDbRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    destinationList.clear();
+
+                    for (DataSnapshot parentSnapshot : snapshot.getChildren()) {
+                        for (DataSnapshot childSnapshot : parentSnapshot.getChildren()) {
+                            Destination destination = childSnapshot.getValue(Destination.class);
+
+                            // Provjera userType i dodavanje samo odgovarajućih destinacija
+                            if (userType != null && userType.equals("user") && destination != null) {
+                                // Ako je korisnik tipa "user", prikazi samo osnovne informacije
+                                Destination simplifiedDestination = new Destination(destination.getName(), "", destination.getImage());
+                                destinationList.add(simplifiedDestination);
+                            } else {
+                                // Inače, prikaži sve informacije za tip "admin"
+                                destinationList.add(destination);
+                            }
+                        }
+                    }
+
+                    adapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Handle onCancelled event if needed
+                }
+            });
+        }
     }
 }

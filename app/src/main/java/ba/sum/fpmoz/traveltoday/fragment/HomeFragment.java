@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,7 +37,7 @@ public class HomeFragment extends Fragment {
 
         recyclerViewDestination = view.findViewById(R.id.recyclerViewDestination);
         destinationList = new ArrayList<>();
-        adapter = new DestinationAdapter(getContext(), destinationList, null); // null for listener since it's not needed in HomeFragment
+        adapter = new DestinationAdapter(getContext(), destinationList, null, "user");
         recyclerViewDestination.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewDestination.setAdapter(adapter);
 
@@ -63,13 +61,10 @@ public class HomeFragment extends Fragment {
                         for (DataSnapshot childSnapshot : parentSnapshot.getChildren()) {
                             Destination destination = childSnapshot.getValue(Destination.class);
 
-                            // Provjera userType i dodavanje samo odgovarajućih destinacija
-                            if (userType != null && userType.equals("user") && destination != null) {
-                                // Ako je korisnik tipa "user", prikazi samo osnovne informacije
+                            if ("user".equals(userType) && destination != null) {
                                 Destination simplifiedDestination = new Destination(destination.getName(), "", destination.getImage());
                                 destinationList.add(simplifiedDestination);
                             } else {
-                                // Inače, prikaži sve informacije za tip "admin"
                                 destinationList.add(destination);
                             }
                         }
@@ -80,9 +75,9 @@ public class HomeFragment extends Fragment {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    // Handle onCancelled event if needed
                 }
             });
         }
     }
 }
+

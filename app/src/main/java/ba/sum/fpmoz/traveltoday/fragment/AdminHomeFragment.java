@@ -35,7 +35,7 @@ public class AdminHomeFragment extends Fragment implements DestinationAdapter.On
         mDatabase = FirebaseDatabase.getInstance("https://traveltodayapp-fffaf-default-rtdb.europe-west1.firebasedatabase.app/");
 
         destinationView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new DestinationAdapter(getActivity(), list, this);
+        adapter = new DestinationAdapter(getActivity(), list, this, "admin");
         destinationView.setAdapter(adapter);
 
         DatabaseReference destinationDbRef = mDatabase.getInstance().getReference("destination");
@@ -67,8 +67,6 @@ public class AdminHomeFragment extends Fragment implements DestinationAdapter.On
     @Override
     public void onItemClick(Destination destination) {
         Log.d("ItemClicked", "Subject: " + destination.getName());
-        // Implementirajte logiku za prikaz detalja ili nešto drugo kada je stavka kliknuta
     }
-
-
 }
+

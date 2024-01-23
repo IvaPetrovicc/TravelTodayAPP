@@ -3,8 +3,6 @@ package ba.sum.fpmoz.traveltoday.adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +27,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import ba.sum.fpmoz.traveltoday.R;
-import ba.sum.fpmoz.traveltoday.activity.EditDestinationActivity;
 import ba.sum.fpmoz.traveltoday.models.Destination;
 
 public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.MyViewHolder> {
@@ -43,7 +40,7 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
         void onItemClick(Destination destination);
     }
 
-    public DestinationAdapter(Context context, ArrayList<Destination> list, OnItemClickListener listener) {
+    public DestinationAdapter(Context context, ArrayList<Destination> list, OnItemClickListener listener, String user) {
         this.context = context;
         this.list = list;
         this.listener = listener;

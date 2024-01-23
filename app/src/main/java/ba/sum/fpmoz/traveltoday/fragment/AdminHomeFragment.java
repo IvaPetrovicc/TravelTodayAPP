@@ -69,4 +69,3 @@ public class AdminHomeFragment extends Fragment implements DestinationAdapter.On
         Log.d("ItemClicked", "Subject: " + destination.getName());
     }
 }
-

@@ -6,16 +6,12 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Toast;
-
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,9 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
-
 import ba.sum.fpmoz.traveltoday.R;
 import ba.sum.fpmoz.traveltoday.models.Destination;
 
@@ -35,15 +29,19 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
     private final Context context;
     private final ArrayList<Destination> list;
     private final OnItemClickListener listener;
+    private final String userType;
+
 
     public interface OnItemClickListener {
         void onItemClick(Destination destination);
     }
 
-    public DestinationAdapter(Context context, ArrayList<Destination> list, OnItemClickListener listener, String user) {
+    public DestinationAdapter(Context context, ArrayList<Destination> list, OnItemClickListener listener, String userType) {
         this.context = context;
         this.list = list;
         this.listener = listener;
+        this.userType = userType;
+
     }
 
     @NonNull
@@ -63,6 +61,14 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
                     .load(destination.getImage())
                     .placeholder(R.drawable.picture)
                     .into(holder.destinationImage);
+        }
+
+        if ("admin".equals(userType)) {
+            holder.editBtn.setVisibility(View.VISIBLE);
+            holder.deleteBtn.setVisibility(View.VISIBLE);
+        } else {
+            holder.editBtn.setVisibility(View.GONE);
+            holder.deleteBtn.setVisibility(View.GONE);
         }
     }
 
@@ -112,8 +118,6 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
             });
 
 
-
-
             deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -134,14 +138,12 @@ public class DestinationAdapter extends RecyclerView.Adapter<DestinationAdapter.
                                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                         @Override
                                                         public void onSuccess(Void aVoid) {
-                                                            // Provide feedback to the user (optional)
                                                             Toast.makeText(context, "Destination deleted successfully", Toast.LENGTH_SHORT).show();
                                                         }
                                                     })
                                                     .addOnFailureListener(new OnFailureListener() {
                                                         @Override
                                                         public void onFailure(@NonNull Exception e) {
-                                                            // Provide feedback to the user (optional)
                                                             Toast.makeText(context, "Failed to delete destination", Toast.LENGTH_SHORT).show();
                                                         }
                                                     });

@@ -212,7 +212,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         addMarker("South Beach", 25.7824, -80.1341, "Miami", MARKER_COLOR_CYAN);
         addMarker("Wynwood Walls", 25.8010, -80.1997, "Miami", MARKER_COLOR_CYAN);
         addMarker("Little Havana", 25.7665, -80.2097, "Miami", MARKER_COLOR_CYAN);
-        addMarker("Vizcaya Museum and Gardens", 25.7449, -80.2103, "Miami",MARKER_COLOR_CYAN);
+        addMarker("Vizcaya Museum and Gardens", 25.7449, -80.2103, "Miami", MARKER_COLOR_CYAN);
         addMarker("Everglades National Park", 25.2866, -80.8987, "Miami", MARKER_COLOR_CYAN);
         addMarker("Bayside Marketplace", 25.7776, -80.1866, "Miami", MARKER_COLOR_CYAN);
 
@@ -237,19 +237,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         addMarker("Universal Studios Hollywood", 34.1381, -118.3534, "Los Angeles", MARKER_COLOR_YELLOW);
         addMarker("Venice Beach", 33.9850, -118.4695, "Los Angeles", MARKER_COLOR_YELLOW);
 
-        addMarker("The Strip", 36.1147, -115.1728, "Las Vegas",MARKER_COLOR_BLUE);
+        addMarker("The Strip", 36.1147, -115.1728, "Las Vegas", MARKER_COLOR_BLUE);
         addMarker("Bellagio Fountains", 36.1129, -115.1743, "Las Vegas", MARKER_COLOR_BLUE);
         addMarker("High Roller Observation Wheel", 36.1184, -115.1717, "Las Vegas", MARKER_COLOR_BLUE);
         addMarker("Fremont Street Experience", 36.1700, -115.1443, "Las Vegas", MARKER_COLOR_BLUE);
         addMarker("Stratosphere Tower", 36.1473, -115.1550, "Las Vegas", MARKER_COLOR_BLUE);
         addMarker("Neon Museum", 36.1772, -115.1356, "Las Vegas", MARKER_COLOR_BLUE);
-
-
-
-
-
-
-
 
 
         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.509865, -0.118092), 5));

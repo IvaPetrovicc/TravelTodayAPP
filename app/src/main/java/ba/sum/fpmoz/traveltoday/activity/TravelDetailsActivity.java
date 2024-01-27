@@ -32,12 +32,14 @@ public class TravelDetailsActivity extends AppCompatActivity {
         clBack.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), BottomBarActivity.class);
             startActivity(intent);
+            finish();
         });
 
         openMapsButton.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
             startActivity(intent);
         });
+
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("selected_destination")) {
             Destination selectedDestination = intent.getParcelableExtra("selected_destination");
@@ -49,5 +51,13 @@ public class TravelDetailsActivity extends AppCompatActivity {
                     .placeholder(R.drawable.picture)
                     .into(imageView);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, BottomBarActivity.class);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }

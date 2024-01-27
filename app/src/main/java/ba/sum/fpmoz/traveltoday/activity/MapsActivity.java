@@ -245,6 +245,123 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         addMarker("Neon Museum", 36.1772, -115.1356, "Las Vegas", MARKER_COLOR_BLUE);
 
 
+
+        addMarker("Hallgrímskirkja", 64.1417, -21.9266, "Reykjavik", MARKER_COLOR_CYAN);
+        addMarker("Blue Lagoon", 63.8804, -22.4494, "Reykjavik", MARKER_COLOR_CYAN);
+        addMarker("Perlan", 64.1184, -21.8475, "Reykjavik", MARKER_COLOR_CYAN);
+        addMarker("Harpa Concert Hall", 64.1503, -21.9328, "Reykjavik", MARKER_COLOR_CYAN);
+        addMarker("Gullfoss Waterfall", 64.3279, -20.1216, "Reykjavik", MARKER_COLOR_CYAN);
+        addMarker("Geysir Geothermal Area", 64.3104, -20.3024, "Reykjavik", MARKER_COLOR_CYAN);
+
+
+
+        addMarker("Acropolis", 37.9715, 23.7263, "Athens", MARKER_COLOR_AZURE);
+        addMarker("Plaka", 37.9714, 23.7261, "Athens", MARKER_COLOR_AZURE);
+        addMarker("Parthenon", 37.9715, 23.7263, "Athens", MARKER_COLOR_AZURE);
+        addMarker("National Archaeological Museum", 37.9899, 23.7325, "Athens", MARKER_COLOR_AZURE);
+        addMarker("Syntagma Square", 37.9753, 23.7344, "Athens", MARKER_COLOR_AZURE);
+
+
+
+        addMarker("Teatro Colon", -34.5981, -58.3837, "Buenos Aires", MARKER_COLOR_MAGENTA);
+        addMarker("La Boca", -34.6345, -58.3630, "Buenos Aires", MARKER_COLOR_MAGENTA);
+        addMarker("Recoleta Cemetery", -34.5883, -58.3923, "Buenos Aires", MARKER_COLOR_MAGENTA);
+        addMarker("Plaza de Mayo", -34.6083, -58.3724, "Buenos Aires", MARKER_COLOR_MAGENTA);
+        addMarker("Palermo Soho", -34.5898, -58.4325, "Buenos Aires", MARKER_COLOR_MAGENTA);
+
+
+        addMarker("Shibuya Crossing", 35.6590, 139.7006, "Tokyo", MARKER_COLOR_MAGENTA);
+        addMarker("Meiji Shrine", 35.6763, 139.6994, "Tokyo", MARKER_COLOR_MAGENTA);
+        addMarker("Tokyo Tower", 35.6586, 139.7454, "Tokyo", MARKER_COLOR_MAGENTA);
+        addMarker("Tsukiji Fish Market", 35.6604, 139.7694, "Tokyo", MARKER_COLOR_MAGENTA);
+        addMarker("Akihabara Electric Town", 35.6995, 139.7710, "Tokyo", MARKER_COLOR_MAGENTA);
+        addMarker("Senso-ji Temple", 35.7146, 139.7967, "Tokyo", MARKER_COLOR_MAGENTA);
+
+
+        addMarker("Waikiki Beach", 21.2810, -157.8375, "Honolulu", MARKER_COLOR_RED);
+        addMarker("Diamond Head Crater", 21.2612, -157.8009, "Honolulu", MARKER_COLOR_RED);
+        addMarker("Pearl Harbor", 21.3645, -157.9493, "Honolulu", MARKER_COLOR_RED);
+        addMarker("Hanauma Bay", 21.2716, -157.6937, "Honolulu", MARKER_COLOR_RED);
+        addMarker("Iolani Palace", 21.3069, -157.8583, "Honolulu", MARKER_COLOR_RED);
+
+
+        addMarker("Adelaide Oval", -34.9151, 138.5954, "Adelaide", MARKER_COLOR_YELLOW);
+        addMarker("Barossa Valley", -34.5333, 139.0506, "Adelaide", MARKER_COLOR_YELLOW);
+        addMarker("Glenelg Beach", -34.9813, 138.5154, "Adelaide", MARKER_COLOR_YELLOW);
+        addMarker("Adelaide Botanic Garden", -34.9210, 138.6031, "Adelaide", MARKER_COLOR_YELLOW);
+        addMarker("Art Gallery of South Australia", -34.9218, 138.6036, "Adelaide", MARKER_COLOR_YELLOW);
+
+
+
+        addMarker("Monserrate", 4.6071, -74.0533, "Bogota", MARKER_COLOR_AZURE);
+        addMarker("Gold Museum", 4.5981, -74.0710, "Bogota", MARKER_COLOR_AZURE);
+        addMarker("La Candelaria", 4.5949, -74.0721, "Bogota", MARKER_COLOR_AZURE);
+        addMarker("Botero Museum", 4.5941, -74.0712, "Bogota", MARKER_COLOR_AZURE);
+        addMarker("Usaquén District", 4.6965, -74.0315, "Bogota", MARKER_COLOR_AZURE);
+
+
+        addMarker("Pyramids of Giza", 29.9792, 31.1342, "Cairo", MARKER_COLOR_GREEN);
+        addMarker("Egyptian Museum", 30.0478, 31.2336, "Cairo", MARKER_COLOR_GREEN);
+        addMarker("Khan El Khalili Market", 30.0475, 31.2621, "Cairo", MARKER_COLOR_GREEN);
+        addMarker("Cairo Citadel", 30.0295, 31.2614, "Cairo", MARKER_COLOR_GREEN);
+        addMarker("Old Cairo", 30.0121, 31.2317, "Cairo", MARKER_COLOR_GREEN);
+
+
+        addMarker("Table Mountain", -33.9626, 18.4090, "Cape Town", MARKER_COLOR_BLUE);
+        addMarker("V&A Waterfront", -33.9078, 18.4227, "Cape Town", MARKER_COLOR_BLUE);
+        addMarker("Robben Island", -33.8053, 18.3584, "Cape Town", MARKER_COLOR_BLUE);
+        addMarker("Kirstenbosch Botanical Garden", -33.9889, 18.4328, "Cape Town", MARKER_COLOR_BLUE);
+        addMarker("Boulders Beach", -34.1973, 18.4514, "Cape Town", MARKER_COLOR_BLUE);
+        addMarker("District Six Museum", -33.9276, 18.4214, "Cape Town", MARKER_COLOR_BLUE);
+        addMarker("Castle of Good Hope", -33.9260, 18.4256, "Cape Town", MARKER_COLOR_BLUE);
+
+
+        addMarker("Mount Kilimanjaro", -3.0674, 37.3556, "Kilimanjaro", MARKER_COLOR_CYAN);
+        addMarker("Ngorongoro Crater", -3.1615, 35.5876, "Kilimanjaro", MARKER_COLOR_CYAN);
+        addMarker("Serengeti National Park", -2.1540, 34.6857, "Kilimanjaro", MARKER_COLOR_CYAN);
+        addMarker("Amboseli National Park", -2.6528, 37.2579, "Kilimanjaro", MARKER_COLOR_CYAN);
+        addMarker("Lake Manyara National Park", -3.3870, 35.8292, "Kilimanjaro", MARKER_COLOR_CYAN);
+
+
+        addMarker("Milford Sound", -44.6717, 167.9252, "New Zealand", MARKER_COLOR_VIOLET);
+        addMarker("Queenstown", -45.0312, 168.6626, "New Zealand", MARKER_COLOR_VIOLET);
+        addMarker("Rotorua", -38.1368, 176.2497, "New Zealand", MARKER_COLOR_VIOLET);
+        addMarker("Mount Cook", -43.7348, 170.0965, "New Zealand", MARKER_COLOR_VIOLET);
+        addMarker("Waitomo Caves", -38.2619, 175.1140, "New Zealand", MARKER_COLOR_VIOLET);
+        addMarker("Franz Josef Glacier", -43.4644, 170.1836, "New Zealand", MARKER_COLOR_VIOLET);
+        addMarker("Tongariro National Park", -39.2904, 175.5710, "New Zealand", MARKER_COLOR_VIOLET);
+
+
+        addMarker("Old Havana", 23.1330, -82.3830, "Havana", MARKER_COLOR_ORANGE);
+        addMarker("Malecón", 23.1398, -82.3615, "Havana", MARKER_COLOR_ORANGE);
+        addMarker("El Capitolio", 23.1362, -82.3587, "Havana", MARKER_COLOR_ORANGE);
+        addMarker("Revolution Square", 23.1246, -82.3866, "Havana", MARKER_COLOR_ORANGE);
+        addMarker("Fortaleza San Carlos de la Cabaña", 23.1399, -82.3526, "Havana", MARKER_COLOR_ORANGE);
+        addMarker("Museum of the Revolution", 23.1415, -82.3562, "Havana", MARKER_COLOR_ORANGE);
+
+
+        addMarker("Plaza de Armas", -12.0464, -77.0428, "Lima", MARKER_COLOR_RED);
+        addMarker("Larcomar", -12.1328, -77.0305, "Lima", MARKER_COLOR_RED);
+        addMarker("San Francisco Church", -12.0459, -77.0299, "Lima", MARKER_COLOR_RED);
+        addMarker("Barranco District", -12.1442, -77.0206, "Lima", MARKER_COLOR_RED);
+        addMarker("Huaca Pucllana", -12.0951, -77.0363, "Lima", MARKER_COLOR_RED);
+        addMarker("Magic Water Circuit", -12.0683, -77.0338, "Lima", MARKER_COLOR_RED);
+
+
+        addMarker("Mount Everest Base Camp", 27.9881, 86.9250, "Kathmandu", MARKER_COLOR_RED);
+        addMarker("Kathmandu Durbar Square", 27.7030, 85.3155, "Kathmandu", MARKER_COLOR_GREEN);
+        addMarker("Phewa Lake, Pokhara", 28.2096, 83.9856, "Kathmandu", MARKER_COLOR_BLUE);
+        addMarker("Lumbini", 27.4500, 83.2717, "Kathmandu", MARKER_COLOR_YELLOW);
+        addMarker("Annapurna Circuit", 28.5915, 83.8207, "Kathmandu", MARKER_COLOR_ORANGE);
+
+
+        addMarker("Gandantegchinlen Monastery", 47.9131, 106.9240, "Ulaanbaatar", MARKER_COLOR_RED);
+        addMarker("Sukhbaatar Square", 47.9176, 106.9174, "Ulaanbaatar", MARKER_COLOR_GREEN);
+        addMarker("National Museum of Mongolia", 47.9222, 106.9186, "Ulaanbaatar", MARKER_COLOR_BLUE);
+        addMarker("Zaisan Memorial", 47.8914, 106.8843, "Ulaanbaatar", MARKER_COLOR_YELLOW);
+        addMarker("Bogd Khan Palace Museum", 47.9139, 106.8942, "Ulaanbaatar", MARKER_COLOR_ORANGE);
+
+
         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(51.509865, -0.118092), 5));
     }
 
